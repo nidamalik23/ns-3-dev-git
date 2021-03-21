@@ -1,0 +1,24 @@
+# Test Ns3
+
+name: Test
+
+on:
+  push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout\@v2
+
+
+    - name: Install gcc
+      run: |
+        sudo apt-get install -y build-essential
+
+    - name: Test
+      run: |
+        ./waf configure --enable-examples
+        ./waf
+        ./waf --run simple-global-routing
