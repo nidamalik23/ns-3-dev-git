@@ -16,9 +16,11 @@ jobs:
     - name: Install gcc
       run: |
         sudo apt-get install -y build-essential
-
-    - name: Test
+    - name: Install NS3
       run: |
         ./waf configure --enable-examples
         ./waf
         ./waf --run simple-global-routing
+    - name: Run tests
+      run: |
+        python test.py
